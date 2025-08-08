@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册测试</title>
+</head>
+<body>
+    <h1>注册测试</h1>
+    <button onclick="testRegister()">测试注册</button>
+    <div id="result"></div>
+
+    <script>
+        async function testRegister() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '测试中...';
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: 'testuser' + Date.now(),
+                        password: '123456'
+                    })
+                });
+                
+                const data = await response.text();
+                resultDiv.innerHTML = `
+                    <p>状态: ${response.status}</p>
+                    <p>响应: <pre>${data}</pre></p>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p>错误: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
