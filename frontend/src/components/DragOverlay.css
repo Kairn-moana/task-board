@@ -1,0 +1,204 @@
+/* 拖拽卡片预览样式 */
+.drag-card-overlay {
+  background: #282c34;
+  border: 2px solid #61dafb;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(97, 218, 251, 0.3);
+  transform: rotate(5deg);
+  opacity: 0.95;
+  cursor: grabbing;
+  max-width: 250px;
+  z-index: 1000;
+}
+
+.drag-card-content {
+  pointer-events: none;
+}
+
+.drag-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.drag-card-description {
+  font-size: 12px;
+  color: #8c96a8;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.drag-card-priority {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.priority-1 { background: #51cf66; color: #1c7430; } /* 低 */
+.priority-2 { background: #ffd43b; color: #c48806; } /* 中 */
+.priority-3 { background: #ff6b6b; color: #c92a2a; } /* 高 */
+
+/* 放置指示器 */
+.drop-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.drop-indicator-top {
+  top: -1px;
+}
+
+.drop-indicator-bottom {
+  bottom: -1px;
+}
+
+.drop-indicator-line {
+  height: 100%;
+  background: linear-gradient(90deg, #61dafb 0%, #339af0 100%);
+  border-radius: 1px;
+  box-shadow: 0 0 4px rgba(97, 218, 251, 0.6);
+  animation: dropIndicatorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dropIndicatorPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.5);
+  }
+}
+
+/* 列表拖拽区域 */
+.list-drop-zone {
+  position: relative;
+  min-height: 100px;
+  transition: all 0.2s ease;
+}
+
+.list-drop-zone.is-over {
+  background: rgba(97, 218, 251, 0.05);
+  border: 2px dashed #61dafb;
+  border-radius: 8px;
+}
+
+.drop-zone-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(97, 218, 251, 0.1);
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.drop-zone-indicator {
+  background: rgba(97, 218, 251, 0.2);
+  border: 2px dashed #61dafb;
+  border-radius: 6px;
+  padding: 12px 20px;
+  color: #61dafb;
+  font-weight: 500;
+  font-size: 14px;
+  animation: dropZonePulse 2s ease-in-out infinite;
+}
+
+@keyframes dropZonePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* 拖拽状态下的卡片样式 */
+.card-dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+}
+
+.card-drag-preview {
+  transform: rotate(5deg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 拖拽悬停效果 */
+.list-drag-over {
+  background: rgba(97, 218, 251, 0.05);
+  border-color: #61dafb;
+}
+
+.card-drag-over {
+  border-top: 2px solid #61dafb;
+  margin-top: 2px;
+}
+
+/* 拖拽手柄 */
+.drag-handle {
+  cursor: grab;
+  color: #8c96a8;
+  transition: color 0.2s ease;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.drag-handle:hover {
+  color: #61dafb;
+  background: rgba(97, 218, 251, 0.1);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .drag-card-overlay {
+    max-width: 200px;
+    transform: rotate(3deg);
+  }
+  
+  .drop-zone-indicator {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  .drag-card-overlay {
+    transform: none;
+  }
+  
+  .drop-indicator-line {
+    animation: none;
+  }
+  
+  .drop-zone-indicator {
+    animation: none;
+  }
+  
+  .card-dragging {
+    transition: none;
+  }
+}

@@ -1,0 +1,222 @@
+/* 1. 在 :root 中定义颜色变量 */
+:root {
+  --background-page: #f4f5f7;
+  --background-content: #ffffff;
+  --background-nav: #f8f9fa;
+  --background-hover: #e9ecef;
+  --background-active: #e7f1ff;
+
+  --text-primary: #172b4d;
+  --text-secondary: #343a40;
+  --text-accent: #0052cc;
+
+  --border-primary: #dfe1e6;
+
+  --accent-primary: #0052cc;
+  --accent-text: #ffffff;
+}
+
+/* 2. 为深色模式覆盖这些变量 */
+[data-theme="dark"] {
+  --background-page: #1a1a1a;
+  --background-content: #242424;
+  --background-nav: #2a2a2a;
+  --background-hover: #3a3a3a;
+  --background-active: #334155;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-accent: #60a5fa;
+
+  --border-primary: #4a4a4a;
+
+  --accent-primary: #2563eb;
+  --accent-text: #ffffff;
+}
+
+/* 强制全屏布局，覆盖任何可能的限制 */
+html,
+body {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#root {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.home-page {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100% !important; /* 强制全宽度 */
+  max-width: none !important; /* 移除任何最大宽度限制 */
+  margin: 0 !important; /* 移除外边距 */
+  padding: 0 !important; /* 移除内边距 */
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: var(--background-content);
+  border-bottom: 1px solid var(--border-primary);
+  height: 64px;
+  box-sizing: border-box;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px; /* 调整内边距以获得更好的垂直空间 */
+  border: 1px solid #dfe1e6;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #ffffff;
+  height: 40px; /* 新增：为用户菜单设置固定高度 */
+  box-sizing: border-box; /* 确保 padding 和 border 不会增加总高度 */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.project-logo {
+  height: 32px; /* 2. 限制 logo 的高度 */
+  width: auto; /* 保持 logo 的宽高比 */
+  display: block; /* 移除图片下方的额外空间 */
+}
+
+.project-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.create-btn {
+  background-color: var(--accent-primary);
+  color: var(--accent-text);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.create-btn:hover {
+  filter: brightness(1.1);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.org-avatar,
+.user-avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder color */
+  background-size: cover;
+  background-position: center;
+}
+
+.page-container {
+  flex-grow: 1; /* 占据剩余的垂直空间 */
+  padding: 18px; /* 强制移除内边距 */
+
+  background-color: var(--background-page);
+  display: flex; /* 使用 flex 布局，以便 page-body 可以拉伸 */
+
+  max-width: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* 新增样式 */
+.page-body {
+  display: flex;
+  flex-grow: 1; /* 占据剩余的垂直空间 */
+  overflow: hidden; /* 防止内容溢出时出现滚动条 */
+  width: 100%; /* 确保 .page-body 填满 .page-container 的宽度 */
+}
+
+.side-nav {
+  width: 240px;
+  background-color: var(--background-nav);
+  padding: 20px 0;
+  flex-shrink: 0; /* 防止侧边栏在空间不足时被压缩 */
+}
+
+.side-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: block;
+  padding: 12px 24px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 16px;
+  border-left: 3px solid transparent; /* 为活动状态的边框留出空间 */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: var(--background-hover);
+}
+
+.nav-item.active {
+  background-color: var(--background-active);
+  color: var(--text-accent);
+  font-weight: 500;
+  border-left-color: var(--text-accent);
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 0;
+  background-color: var(--background-content);
+  overflow-y: auto;
+}
+
+.theme-toggle-btn {
+  background-color: transparent;
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+.theme-toggle-btn:hover {
+  background-color: var(--background-hover);
+}

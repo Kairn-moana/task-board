@@ -74,3 +74,16 @@ CREATE INDEX IF NOT EXISTS idx_attachments_card_id ON attachments(card_id);
 CREATE INDEX IF NOT EXISTS idx_tags_board_id ON tags(board_id);
 CREATE INDEX IF NOT EXISTS idx_card_tags_card_id ON card_tags(card_id);
 CREATE INDEX IF NOT EXISTS idx_card_tags_tag_id ON card_tags(tag_id);
+
+-- 创建子任务表
+CREATE TABLE IF NOT EXISTS subtasks (
+    id SERIAL PRIMARY KEY,
+    card_id INTEGER NOT NULL REFERENCES cards(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    is_completed BOOLEAN NOT NULL DEFAULT FALSE,
+    "order" INTEGER NOT NULL DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 为子任务表中的 card_id 创建索引以提高查询性能
+CREATE INDEX IF NOT EXISTS idx_subtasks_card_id ON subtasks(card_id);

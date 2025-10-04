@@ -1,0 +1,420 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #282c34; /* 深色背景 */
+  color: #e0e0e0; /* 浅色文字 */
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  max-height: 90vh; /* 设置一个最大高度，比如视窗高度的90% */
+  display: flex; /* 使用flex布局来更好地控制内部元素 */
+  flex-direction: column; /* 让子元素垂直排列 */
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: #aaa;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.modal-close-btn:hover {
+  color: #fff;
+}
+
+.modal-card-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 15px;
+}
+
+/* --- 可滚动内容区域的样式 --- */
+.modal-scrollable-content {
+  overflow-y: auto; /* 当内容垂直溢出时，显示滚动条 */
+  padding-right: 15px; /* 为滚动条留出空间，防止内容被遮挡 */
+  margin-right: -15px; /* 将留出的空间拉回来，保持整体对齐 */
+}
+
+.modal-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.save-btn {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.save-btn:hover:not(:disabled) {
+  background-color: #21a1f1;
+}
+
+.save-btn:disabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* --- Tiptap 编辑器样式 --- */
+.tiptap-editor-wrapper .ProseMirror {
+  min-height: 150px;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  outline: none;
+}
+
+.tiptap-editor-wrapper .ProseMirror:focus {
+  border-color: #61dafb;
+}
+
+/* Tiptap 默认内容的样式 */
+.ProseMirror {
+  outline: none; /* 去掉默认的蓝色边框 */
+}
+
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding: 0 1rem;
+}
+
+.ProseMirror p {
+  margin: 0 0 1rem;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3 {
+  margin: 1rem 0 0.5rem;
+  line-height: 1.1;
+}
+
+.ProseMirror em {
+  font-style: italic; /* 告诉浏览器 em 标签是斜体 */
+  /* 为中文字符添加倾斜效果 */
+  transform: skew(-12deg);
+  display: inline-block;
+}
+
+/* 确保英文和数字保持正常的斜体 */
+.ProseMirror em * {
+  transform: skew(12deg);
+}
+
+.ProseMirror strong {
+  font-weight: bold; /* 告诉浏览器 strong 标签是粗体 */
+}
+
+.ProseMirror u {
+  text-decoration: underline; /* 告诉浏览器 u 标签是下划线 */
+}
+
+.attachments-list {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.attachment-item {
+  background-color: #3a4049;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.attachment-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.delete-attachment-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  transition: all 0.2s;
+}
+
+.delete-attachment-btn:hover:not(:disabled) {
+  background-color: #ff5252;
+  transform: scale(1.1);
+}
+
+.delete-attachment-btn:disabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.attachment-item a {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: 500;
+}
+.attachment-item a:hover {
+  text-decoration: underline;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: #8c96a8;
+}
+
+/* Tiptap 工具栏样式 */
+.menu-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: #3a4049;
+  border-radius: 4px;
+}
+
+.menu-bar button {
+  padding: 6px 12px;
+  border: 1px solid #555;
+  background-color: #282c34;
+  color: #e0e0e0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.menu-bar button:hover {
+  background-color: #4a5568;
+  border-color: #61dafb;
+}
+
+.menu-bar button.is-active {
+  background-color: #61dafb;
+  color: #282c34;
+  border-color: #61dafb;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #61dafb;
+  color: #282c34;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: #21a1f1;
+}
+
+.upload-btn.disabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success-message {
+  color: #51cf66;
+  font-size: 14px;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+/* 卡片元数据样式 */
+.card-meta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.meta-item label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a0a0a0;
+}
+
+.meta-item select,
+.meta-item input {
+  padding: 6px 10px;
+  border: 1px solid #555;
+  background-color: #3a4049;
+  color: #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.meta-item select:focus,
+.meta-item input:focus {
+  outline: none;
+  border-color: #61dafb;
+}
+
+/* 标签元数据项 */
+.tags-meta-item {
+  grid-column: 1 / -1; /* 跨越所有列 */
+}
+
+.tags-loading {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-style: italic;
+  padding: var(--space-sm);
+}
+
+.card-tag-selector {
+  width: 100%;
+}
+
+.attachments-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.attachments-section h3 {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+.emotion-picker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.emotion-option {
+  padding: 6px 10px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: #2d3748;
+  color: #e2e8f0;
+  cursor: pointer;
+}
+.emotion-option.active {
+  background: #1f2937;
+}
+
+/* --- 子任务区域样式 --- */
+.subtasks-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.subtasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.subtasks-header h3 {
+  margin: 0;
+  color: #e0e0e0;
+}
+
+.decompose-btn {
+  background: none;
+  border: 1px solid #5a67d8;
+  color: #5a67d8;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.subtasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subtask-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #3a4049;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.subtask-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.subtask-title {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  outline: none;
+}
+
+.subtask-title.done {
+  text-decoration: line-through;
+  color: #8c96a8;
+}
+
+.delete-subtask-btn,
+.add-subtask-btn {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-subtask-btn {
+  margin-top: 10px;
+}

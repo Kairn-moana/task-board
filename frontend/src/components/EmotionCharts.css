@@ -1,0 +1,19 @@
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* 在屏幕宽度大于768px时，并排显示图表 */
+@media (min-width: 768px) {
+  .charts-container {
+    grid-template-columns: 2fr 1fr; /* 折线图更宽一些 */
+  }
+}
+
+.chart-wrapper {
+  background-color: var(--background-page);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+}

@@ -1,0 +1,66 @@
+/* 列表的“外框”，控制背景和形状 */
+.list-wrapper {
+  width: 272px; /* Trello 的标准宽度 */
+  flex-shrink: 0;
+  border-radius: 12px;
+  background-color: #ebecf0; /* 默认的浅灰色背景 */
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 使用 :nth-child 来为不同列表设置颜色 */
+.list-wrapper:nth-child(4n + 1) {
+  background-color: #fdf5d4; /* 淡黄色 */
+}
+.list-wrapper:nth-child(4n + 2) {
+  background-color: #d4fdf0; /* 淡绿色 */
+}
+.list-wrapper:nth-child(4n + 3) {
+  background-color: #d4e9fd; /* 淡蓝色 */
+}
+.list-wrapper:nth-child(4n + 4) {
+  background-color: #fdd4d4; /* 淡红色 */
+}
+
+/* 列表组件本身，现在是透明的 */
+.list {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  max-height: 100%;
+}
+
+.list-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #172b4d; /* 深色文字以保证可读性 */
+  padding: 6px 8px;
+  margin: 0 0 8px 0;
+}
+
+.cards-container {
+  overflow-y: auto; /* 如果卡片太多，允许内部滚动 */
+  overflow-x: hidden;
+  padding: 0 4px;
+  margin: 0 -4px;
+}
+
+.add-card-btn {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  color: #5e6c84;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+  text-align: left;
+}
+
+.add-card-btn:hover {
+  background-color: rgba(9, 30, 66, 0.08);
+  color: #172b4d;
+}

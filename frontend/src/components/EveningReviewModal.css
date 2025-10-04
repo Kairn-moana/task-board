@@ -1,0 +1,51 @@
+.review-modal {
+  max-width: 550px;
+}
+
+.review-modal h2 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.review-modal p {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.save-button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px;
+  font-size: 1.1rem;
+}

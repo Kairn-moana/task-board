@@ -1,0 +1,119 @@
+.analytics-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.analytics-modal-content {
+  background: #282c34;
+  color: #e0e0e0;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 1000px; /* 适当加宽以容纳更多内容 */
+  max-height: 90vh; /* 限制最大高度 */
+  overflow-y: auto; /* 超出部分可以滚动 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.chart-wrapper {
+  background: #1f2937;
+  padding: 15px;
+  border-radius: 6px;
+}
+/* --- 时间线和统计区域样式 --- */
+.timeline-section {
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+}
+
+.timeline-and-stats {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 时间线占2/3，统计占1/3 */
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.timeline-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px; /* 为滚动条留出空间 */
+}
+
+.timeline-day {
+  margin-bottom: 20px;
+}
+
+.timeline-date {
+  color: #a0aec0;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+.timeline-items {
+  list-style: none;
+  padding-left: 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1f2937;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.timeline-emotion {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.timeline-title {
+  flex-grow: 1;
+}
+
+.timeline-tags {
+  flex-shrink: 0;
+}
+
+.stats-container {
+  background: #1f2937;
+  padding: 15px;
+  border-radius: 6px;
+  align-self: flex-start; /* 保持在顶部 */
+}
+
+.emotion-stat {
+  margin-bottom: 15px;
+}
+
+.stat-emotion-title {
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}

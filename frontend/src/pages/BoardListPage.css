@@ -1,0 +1,134 @@
+.board-list-page {
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  height: 100%;
+}
+
+.board-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.board-list-header h1 {
+  font-size: 2rem;
+  color: var(--text-color-strong);
+}
+
+.create-board-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.create-board-btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.board-card {
+  background-color: var(--card-background-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.board-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.delete-board-btn:hover {
+  background-color: #ef4444; /* 鼠标悬停时变红 */
+  color: white;
+}
+
+.board-card-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color-strong);
+}
+
+.board-card-content p {
+  font-size: 0.875rem;
+  color: var(--text-color-soft);
+}
+
+/* --- 新增样式 --- */
+.create-new-board-card {
+  cursor: pointer;
+  border: 2px dashed var(--border-color);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.create-new-board-card:hover {
+  background-color: var(--background-color-secondary); /* 一个微妙的悬停效果 */
+  border-color: var(--primary-color);
+}
+
+.create-new-board-card h3 {
+  color: var(--text-color-soft);
+  transition: color 0.2s ease;
+}
+
+.create-new-board-card:hover h3 {
+  color: var(--primary-color);
+}
+
+.no-boards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 60vh;
+  color: var(--text-color-soft);
+}
+
+.no-boards-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.no-boards-container p {
+  margin-bottom: 1.5rem;
+}
+
+.no-boards-container button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.no-boards-container button:hover {
+  background-color: var(--primary-color-dark);
+}

@@ -1,0 +1,71 @@
+.ek-card {
+  background: var(--card-background-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.ek-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ek-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-color-strong);
+  margin: 0;
+  flex: 1;
+}
+
+.ek-duration-tag {
+  background: var(--background-color-secondary);
+  color: var(--text-color-soft);
+  font-size: 0.875rem;
+  padding: 4px 8px;
+  border-radius: 16px;
+  white-space: nowrap;
+}
+
+/* 分类标签样式 */
+.ek-category-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.2s ease;
+}
+
+.ek-category-tag:hover {
+  transform: translateY(-1px);
+}
+
+.ek-category-icon {
+  font-size: 1.1em;
+}
+
+.ek-category-text {
+  font-size: 0.875rem;
+}
+
+.ek-steps-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color-soft);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+}
+
+.ek-steps-content {
+  color: var(--text-color);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin: 0;
+}

@@ -1,0 +1,321 @@
+/* 导入主题 */
+@import "./styles/theme.css";
+
+/* 应用主题到全局元素 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 覆盖默认的按钮样式 */
+button {
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--border-light);
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  font-family: inherit;
+  background-color: var(--surface-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+button:hover {
+  border-color: var(--primary-500);
+  background-color: var(--surface-secondary);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 链接样式 */
+a {
+  font-weight: var(--font-medium);
+  color: var(--primary-500);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--primary-600);
+  text-decoration: underline;
+}
+
+/* 标题样式 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-md) 0;
+}
+
+h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+}
+h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-semibold);
+}
+h3 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+}
+h4 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+}
+h5 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+}
+h6 {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+}
+
+/* 段落样式 */
+p {
+  margin: 0 0 var(--space-md) 0;
+  line-height: var(--leading-normal);
+}
+
+/* 表单元素样式 */
+input,
+textarea,
+select {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-medium);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  transition: all var(--transition-normal);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.1);
+}
+
+/* 代码样式 */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+  padding: 2px 4px;
+  border-radius: var(--radius-small);
+  font-size: 0.9em;
+}
+
+/* 卡片样式（保留现有功能） */
+.card-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-medium);
+  margin-bottom: var(--space-sm);
+  box-shadow: var(--shadow-small);
+  cursor: default;
+  transition: all var(--transition-normal);
+}
+
+.card-wrapper:hover {
+  box-shadow: var(--shadow-medium);
+  border-color: var(--border-medium);
+}
+
+.drag-handle {
+  padding: var(--space-md) var(--space-sm);
+  cursor: grab;
+  color: var(--text-secondary);
+  touch-action: none;
+  transition: color var(--transition-normal);
+}
+
+.drag-handle:hover {
+  color: var(--primary-500);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.card-content {
+  flex-grow: 1;
+  padding: var(--space-md) var(--space-sm);
+  cursor: pointer;
+  border-radius: var(--radius-medium);
+  transition: background-color var(--transition-normal);
+}
+
+.card-content:hover {
+  background-color: var(--surface-secondary);
+}
+
+.card-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: var(--space-md);
+  font-size: var(--text-base);
+  opacity: 0.5;
+  transition: all var(--transition-normal);
+}
+
+.card-wrapper:hover .card-delete-btn {
+  opacity: 1;
+}
+
+.card-delete-btn:hover {
+  color: var(--error-main);
+}
+
+/* 卡片标签样式 */
+.card-tags {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+.card-tag-list {
+  justify-content: flex-start;
+}
+
+/* 卡片元信息样式 */
+.card-meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: 10px;
+}
+
+.card-priority,
+.card-due-date,
+.card-attachments {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-xs);
+  border-radius: var(--radius-small);
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  line-height: 1.2;
+}
+
+.card-priority {
+  background: var(--surface-tertiary);
+  color: var(--text-secondary);
+}
+
+.card-priority.priority-1 {
+  background: var(--success-light);
+  color: #1c7430;
+}
+
+.card-priority.priority-2 {
+  background: var(--warning-light);
+  color: #c48806;
+}
+
+.card-priority.priority-3 {
+  background: var(--error-light);
+  color: #c92a2a;
+}
+
+.card-due-date {
+  background: var(--primary-50);
+  color: var(--primary-600);
+}
+
+.card-due-date.overdue {
+  background: var(--error-light);
+  color: var(--error-600);
+}
+
+.card-attachments {
+  background: var(--surface-tertiary);
+  color: var(--text-secondary);
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+}
+
+.btn:hover {
+  background: #111827;
+}
+
+:root {
+  --card-bg: #0f172a;
+  --card-fg: #e5e7eb;
+}
+
+html[data-theme="light"] {
+  --card-bg: #ffffff;
+  --card-fg: #111827;
+}
+
+/* 一步步模式：完成微动效（可在设置页关闭） */
+@keyframes step-pop-bounce {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* 利用 tick 变化强制重播动画 */
+[class*="step-complete-anim-"] {
+  animation: step-pop-bounce 220ms ease-out;
+}
+
+/* 可及性：减少动画 */
+[data-reduce-animations="true"] * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 可及性：更大点击区域 */
+[data-large-click-areas="true"] button,
+[data-large-click-areas="true"] a,
+[data-large-click-areas="true"] [role="button"] {
+  min-height: 44px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

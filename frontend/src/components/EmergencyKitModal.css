@@ -1,0 +1,116 @@
+.emergency-kit-modal {
+  width: 90vw;
+  max-width: 900px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.ek-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ek-header h2 {
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+  color: var(--text-color-strong);
+}
+
+.ek-header p {
+  color: var(--text-color-soft);
+  margin: 0;
+}
+
+.ek-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.ek-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ek-section-header h3 {
+  font-size: 1.25rem;
+  color: var(--text-color-strong);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ek-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.ek-card {
+  background: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.ek-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.ek-title-area {
+  flex: 1;
+}
+
+.ek-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--text-color-strong);
+}
+
+.ek-duration {
+  font-size: 0.875rem;
+  color: var(--text-color-soft);
+  background: var(--background-color-secondary);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.ek-category-badge {
+  font-size: 0.875rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.ek-steps-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--text-color-soft);
+  margin: 0 0 8px 0;
+}
+
+.ek-steps-content {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0;
+  white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+  .emergency-kit-modal {
+    width: 95vw;
+    padding: 16px;
+  }
+
+  .ek-cards {
+    grid-template-columns: 1fr;
+  }
+}

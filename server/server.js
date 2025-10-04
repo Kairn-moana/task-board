@@ -9,8 +9,13 @@ const boardsRoutes = require("./routes/boards");
 const cardsRoutes = require("./routes/cards");
 const attachmentsRoutes = require("./routes/attachments");
 const tagsRoutes = require("./routes/tags");
+const timeEntriesRoutes = require("./routes/timeEntries");
+const analyticsRoutes = require("./routes/analytics");
 
-// const listsRoutes = require("./routes/lists"); // 假设你也有 lists.js 路由
+const subtasksRoutes = require("./routes/subtasks");
+const emotionsRoutes = require("./routes/emotions");
+const emergencyKitRoutes = require("./routes/emergencyKit");
+const rewardsRoutes = require("./routes/rewards");
 
 const app = express();
 
@@ -25,16 +30,20 @@ app.use("/api/boards", boardsRoutes);
 app.use("/api/cards", cardsRoutes);
 app.use("/api/attachments", attachmentsRoutes);
 app.use("/api/tags", tagsRoutes);
+app.use("/api/time-entries", timeEntriesRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
+app.use("/api/subtasks", subtasksRoutes);
+app.use("/api/emotions", emotionsRoutes);
+app.use("/api/emergency-kit", emergencyKitRoutes);
+app.use("/api/rewards", rewardsRoutes);
 // --- 4. 数据库连接 (如果你的 db.js 里没有自动连接的话) ---
 // const connectDB = require("./db_connect_function"); // 假设你的数据库连接逻辑在一个函数里
 // connectDB(); // 如果需要手动调用
 
 // --- 5. 启动服务器 ---
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-
-});
+app.listen(PORT, () => {});
 
 // --- 6. (可选) 添加一个根路径的欢迎信息，方便测试 ---
 app.get("/", (req, res) => {

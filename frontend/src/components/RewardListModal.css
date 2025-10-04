@@ -1,0 +1,123 @@
+.reward-list-modal .rl-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.reward-list-modal .rl-header h2 {
+  margin-top: 0;
+  color: var(--text-primary);
+}
+
+.reward-list-modal .rl-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.rl-list {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.rl-group {
+  margin-bottom: 24px;
+}
+
+.rl-group-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.rl-items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.rl-item {
+  background-color: var(--background-page);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rl-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rl-item-text {
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.rl-tag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+/* 标签颜色 */
+.tag-吃的 {
+  background-color: #d97706;
+}
+.tag-玩的 {
+  background-color: #059669;
+}
+.tag-社交 {
+  background-color: #2563eb;
+}
+.tag-放空 {
+  background-color: #6d28d9;
+}
+
+.reward-modal {
+  text-align: center;
+}
+
+.suggestion-box {
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.suggestion-box h3 {
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+}
+
+.claim-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+}
+
+.draw-again-button {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+}
+
+.claimed-message {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 20px;
+}

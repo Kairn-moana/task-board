@@ -1,0 +1,3 @@
+-- 为卡片增加情绪字段
+ALTER TABLE IF EXISTS cards
+  ADD COLUMN IF NOT EXISTS emotion VARCHAR(20);

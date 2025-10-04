@@ -1,0 +1,90 @@
+.focus-session-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a202c; /* A darker, calming background */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  z-index: 3000;
+  animation: fadeInFocus 0.5s ease-in-out;
+}
+
+@keyframes fadeInFocus {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.focus-header,
+.focus-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.session-indicator {
+  font-size: 1.5rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.session-indicator.work {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.session-indicator.break {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.focus-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.timer-display {
+  font-size: 10rem;
+  font-weight: 700;
+  color: white;
+  font-family: "Roboto Mono", "Courier New", monospace;
+  letter-spacing: -5px;
+}
+
+.focused-task-title {
+  font-size: 2.5rem;
+  margin-top: 20px;
+  max-width: 800px;
+  font-weight: 400;
+  color: #cbd5e0;
+}
+
+.end-session-btn,
+.pause-resume-btn {
+  background: #4a5568;
+  color: #e2e8f0;
+  border: 1px solid #718096;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.end-session-btn:hover,
+.pause-resume-btn:hover {
+  background-color: #2d3748;
+}
