@@ -2,7 +2,8 @@
 export const ENV = {
   NODE_ENV: import.meta.env.MODE || "development",
   API_BASE_URL:
-    import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api",
+    import.meta.env.VITE_API_BASE_URL ||
+    "https://karin-task-board-api.onrender.com/api",
   ENABLE_DEBUG:
     import.meta.env.VITE_ENABLE_DEBUG === "true" ||
     import.meta.env.MODE === "development",
@@ -16,7 +17,6 @@ export const ENV = {
   // 调试日志 - 只在开发环境或启用调试时输出
   debug: (...args) => {
     if (ENV.ENABLE_DEBUG) {
-
     }
   },
 
