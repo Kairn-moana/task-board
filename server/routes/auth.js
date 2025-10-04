@@ -5,90 +5,111 @@ const jwt = require("jsonwebtoken");
 const db = require("../db");
 const ResponseHandler = require("../utils/responseHandler");
 const { asyncHandler, AppError } = require("../utils/errorHandler");
-const { validateRequired, validateUsername, validatePassword } = require("../utils/validators");
+const {
+  validateRequired,
+  validateUsername,
+  validatePassword,
+} = require("../utils/validators");
 require("dotenv").config();
 
 // POST /api/auth/register - 用户注册
-router.post("/register", asyncHandler(async (req, res) => {
-  const { username, password } = req.body;
-  
-  // 参数验证
-  validateRequired(['username', 'password'], req.body);
-  const validUsername = validateUsername(username);
-  const validPassword = validatePassword(password);
+router.post(
+  "/register",
+  asyncHandler(async (req, res) => {
+    const { username, password } = req.body;
 
-  // 1. 检查用户是否已存在
-  const userExists = await db.query(
-    "SELECT id FROM users WHERE username = $1",
-    [validUsername]
-  );
-  
-  if (userExists.rows.length > 0) {
-    throw new AppError("用户名已存在", 400, "USER_EXISTS");
-  }
+    // 参数验证
+    validateRequired(["username", "password"], req.body);
+    const validUsername = validateUsername(username);
+    const validPassword = validatePassword(password);
 
-  // 2. 对密码进行哈希加密
-  const salt = await bcrypt.genSalt(10);
-  const password_hash = await bcrypt.hash(validPassword, salt);
+    // 1. 检查用户是否已存在
+    const userExists = await db.query(
+      "SELECT id FROM users WHERE username = $1",
+      [validUsername]
+    );
 
-  // 3. 将新用户存入数据库
-  const newUser = await db.query(
-    "INSERT INTO users (username, password_hash) VALUES ($1, $2) RETURNING id, username",
-    [validUsername, password_hash]
-  );
+    if (userExists.rows.length > 0) {
+      throw new AppError("用户名已存在", 400, "USER_EXISTS");
+    }
 
-  return ResponseHandler.success(res, {
-    user: newUser.rows[0]
-  }, "注册成功", 201);
-}));
+    // 2. 对密码进行哈希加密
+    const salt = await bcrypt.genSalt(10);
+    const password_hash = await bcrypt.hash(validPassword, salt);
+
+    // 3. 将新用户存入数据库
+    const newUser = await db.query(
+      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username",
+      [
+        validUsername,
+        req.body.email || `${validUsername}@example.com`,
+        password_hash,
+      ]
+    );
+
+    return ResponseHandler.success(
+      res,
+      {
+        user: newUser.rows[0],
+      },
+      "注册成功",
+      201
+    );
+  })
+);
 
 // POST /api/auth/login - 用户登录
-router.post("/login", asyncHandler(async (req, res) => {
-  const { username, password } = req.body;
+router.post(
+  "/login",
+  asyncHandler(async (req, res) => {
+    const { username, password } = req.body;
 
-  // 参数验证
-  validateRequired(['username', 'password'], req.body);
-  const validUsername = validateUsername(username);
-  const validPassword = validatePassword(password);
+    // 参数验证
+    validateRequired(["username", "password"], req.body);
+    const validUsername = validateUsername(username);
+    const validPassword = validatePassword(password);
 
-  // 1. 查找用户
-  const result = await db.query(
-    "SELECT id, username, password_hash FROM users WHERE username = $1", 
-    [validUsername]
-  );
-  
-  const user = result.rows[0];
-  if (!user) {
-    throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
-  }
+    // 1. 查找用户
+    const result = await db.query(
+      "SELECT id, username, password_hash FROM users WHERE username = $1",
+      [validUsername]
+    );
 
-  // 2. 验证密码
-  const isMatch = await bcrypt.compare(validPassword, user.password_hash);
-  if (!isMatch) {
-    throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
-  }
-
-  // 3. 创建并签发 JWT
-  const payload = {
-    user: {
-      id: user.id,
-      username: user.username,
-    },
-  };
-
-  const token = jwt.sign(
-    payload,
-    process.env.JWT_SECRET,
-    { expiresIn: "7d" }
-  );
-
-  return ResponseHandler.success(res, {
-    token,
-    user: {
-      id: user.id,
-      username: user.username
+    const user = result.rows[0];
+    if (!user) {
+      throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
     }
-  }, "登录成功");
-}));
+
+    // 2. 验证密码
+    const isMatch = await bcrypt.compare(validPassword, user.password_hash);
+    if (!isMatch) {
+      throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
+    }
+
+    // 3. 创建并签发 JWT
+    const payload = {
+      user: {
+        id: user.id,
+        username: user.username,
+      },
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    return ResponseHandler.success(
+      res,
+      {
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+        },
+      },
+      "登录成功"
+    );
+  })
+);
 
 module.exports = router;
