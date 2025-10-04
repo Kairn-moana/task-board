@@ -1,6 +1,6 @@
 // 认证相关的API服务
 import { api } from "../../utils/apiUtils.js";
-import { ENV } from "../../config/env.js"; // 添加这一行
+import { ENV } from "../../config/env.js";
 
 export const authService = {
   // 用户登录

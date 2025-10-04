@@ -71,7 +71,9 @@ export async function handleApiRequest(requestFn, errorMessage = "请求失败")
 }
 
 // 请求拦截器
-export function createApiRequest(baseURL = ENV.API_BASE_URL) {
+export function createApiRequest(
+  baseURL = "https://karin-task-board-api.onrender.com/api"
+) {
   return {
     async request(endpoint, options = {}) {
       const token = localStorage.getItem("token");
