@@ -71,7 +71,7 @@ export async function handleApiRequest(requestFn, errorMessage = "请求失败")
 }
 
 // 请求拦截器
-export function createApiRequest(baseURL = "http://localhost:3000/api") {
+export function createApiRequest(baseURL = ENV.API_BASE_URL) {
   return {
     async request(endpoint, options = {}) {
       const token = localStorage.getItem("token");
