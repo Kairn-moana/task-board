@@ -1,4 +1,7 @@
 // API 工具类 - 统一的错误处理和响应格式
+// 删除 ENV 导入，直接硬编码 API URL
+const API_URL = "https://karin-task-board-api.onrender.com/api";
+
 export class ApiError extends Error {
   constructor(message, status, code) {
     super(message);
@@ -71,9 +74,8 @@ export async function handleApiRequest(requestFn, errorMessage = "请求失败")
 }
 
 // 请求拦截器
-export function createApiRequest(
-  baseURL = "https://karin-task-board-api.onrender.com/api"
-) {
+export function createApiRequest(baseURL = API_URL) {
+  // 直接使用硬编码 API URL
   return {
     async request(endpoint, options = {}) {
       const token = localStorage.getItem("token");

@@ -1,13 +1,13 @@
 // 认证相关的API服务
 import { api } from "../../utils/apiUtils.js";
-import { ENV } from "../../config/env.js";
+// 删除 ENV 导入，直接硬编码 API URL
+const API_URL = "https://karin-task-board-api.onrender.com/api";
 
 export const authService = {
   // 用户登录
   async login(username, password) {
     // 认证请求不需要token，直接使用fetch
-    const response = await fetch(`${ENV.API_BASE_URL}/auth/login`, {
-      // 修改这一行
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -24,8 +24,7 @@ export const authService = {
   // 用户注册
   async register(username, password) {
     // 认证请求不需要token，直接使用fetch
-    const response = await fetch(`${ENV.API_BASE_URL}/auth/register`, {
-      // 修改这一行
+    const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
