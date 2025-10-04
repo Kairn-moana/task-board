@@ -20,7 +20,13 @@ const rewardsRoutes = require("./routes/rewards");
 const app = express();
 
 // --- 2. 使用核心中间件 ---
-app.use(cors());
+const corsOptions = {
+  origin: ["https://task-board-nine-tau.vercel.app", "http://localhost:5173"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // --- 3. 挂载所有路由 ---
