@@ -1,30 +1,30 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // 导入用于跳转和链接的 Hooks
-import { registerUser } from "../api"; // 我们将在 api 文件中创建这个函数
+import { useNavigate, Link } from "react-router-dom";
+import { authService } from "../api/services/authService.js"; // 使用新的 authService
 import "./AuthForm.css";
 
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // 获取 navigate 函数，用于编程式跳转
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null); // 重置错误信息
+    setError(null);
 
     try {
-      const response = await registerUser(username, password);
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.msg || "注册失败");
+      // 使用新的 authService
+      const data = await authService.register(username, password);
+
+      // 如果有 token，保存并跳转
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        navigate("/");
+      } else {
+        // 注册成功但没有自动登录，跳转到登录页面
+        navigate("/login");
       }
-      const data = await response.json();
-
-      // 注册成功！保存 token
-      localStorage.setItem("token", data.token);
-
-      navigate("/");
     } catch (err) {
       setError(err.message);
     }
