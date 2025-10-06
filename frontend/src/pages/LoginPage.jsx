@@ -1,33 +1,32 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // 导入用于跳转和链接的 Hooks
-import { loginUser } from "../api"; // 我们将在 api 文件中创建这个函数
+import { useNavigate, Link } from "react-router-dom";
+import { authService } from "../api/services/authService.js"; // 使用新的 authService
 import "./AuthForm.css";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // 获取 navigate 函数，用于编程式跳转
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null); // 重置错误信息
+    setError(null);
+    setIsLoading(true);
 
     try {
-      const response = await loginUser(username, password);
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.msg || "登录失败");
-      }
-      const data = await response.json();
+      // 使用新的 authService
+      const data = await authService.login(username, password);
 
-      // 登录成功！保存 token
+      // 保存 token 并跳转
       localStorage.setItem("token", data.token);
-
-      // 跳转到主看板页面
-      navigate("/"); // 跳转到根路径
+      navigate("/");
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "登录失败，请稍后再试");
+      console.error("登录错误:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,7 +55,9 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit">登录</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "登录中..." : "登录"}
+        </button>
         <p>
           还没有账号？ <Link to="/register">立即注册</Link>
         </p>
