@@ -17,6 +17,8 @@ function RegisterPage() {
       // 使用新的 authService
       const data = await authService.register(username, password);
 
+      console.log("注册成功，token=", data.token);
+
       // 如果有 token，保存并跳转
       if (data.token) {
         localStorage.setItem("token", data.token);

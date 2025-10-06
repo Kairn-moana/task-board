@@ -19,9 +19,11 @@ function LoginPage() {
       // 使用新的 authService
       const data = await authService.login(username, password);
 
+      console.log("登录成功，token=", data.token);
+
       // 保存 token 并跳转
       localStorage.setItem("token", data.token);
-      navigate("/");
+      navigate("/today");
     } catch (err) {
       setError(err.message || "登录失败，请稍后再试");
       console.error("登录错误:", err);
