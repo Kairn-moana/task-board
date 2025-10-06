@@ -15,10 +15,13 @@ export const authService = {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.msg || "登录失败");
+      throw new Error(errorData.msg || errorData.message || "登录失败");
     }
 
-    return response.json();
+    const result = await response.json();
+    // 后端返回格式：{ success: true, data: { token, user }, message: "..." }
+    // 直接返回 data 部分
+    return result.data || result;
   },
 
   // 用户注册
@@ -32,10 +35,13 @@ export const authService = {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.msg || "注册失败");
+      throw new Error(errorData.msg || errorData.message || "注册失败");
     }
 
-    return response.json();
+    const result = await response.json();
+    // 后端返回格式：{ success: true, data: { token, user }, message: "..." }
+    // 直接返回 data 部分
+    return result.data || result;
   },
 
   // 登出
