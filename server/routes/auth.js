@@ -71,7 +71,7 @@ router.post(
 
     // 1. 查找用户
     const result = await db.query(
-      "SELECT id, username, password_hash FROM users WHERE username = $1",
+      "SELECT id, username, password FROM users WHERE username = $1",
       [validUsername]
     );
 
@@ -81,7 +81,7 @@ router.post(
     }
 
     // 2. 验证密码
-    const isMatch = await bcrypt.compare(validPassword, user.password_hash);
+    const isMatch = await bcrypt.compare(validPassword, user.password);
     if (!isMatch) {
       throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
     }
