@@ -47,9 +47,22 @@ router.post(
       ]
     );
 
+    // 4. 创建并签发 JWT (新增)
+    const payload = {
+      user: {
+        id: newUser.rows[0].id,
+        username: newUser.rows[0].username,
+      },
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
     return ResponseHandler.success(
       res,
       {
+        token, // 添加 token 到响应
         user: newUser.rows[0],
       },
       "注册成功",
@@ -80,7 +93,7 @@ router.post(
       throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
     }
 
-    // 2. 验证密码
+    // 2. 验证密码 - 确保使用正确的字段名
     const isMatch = await bcrypt.compare(validPassword, user.password);
     if (!isMatch) {
       throw new AppError("用户名或密码错误", 400, "INVALID_CREDENTIALS");
