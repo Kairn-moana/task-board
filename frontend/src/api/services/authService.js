@@ -52,17 +52,20 @@ export const authService = {
 
   // 获取当前用户信息
   getCurrentUser() {
-    const token = localStorage.getItem("token");
-    if (!token || token === "dev-temp-token") {
-      return null;
-    }
-
+    let token;
     try {
+      token = localStorage.getItem("token");
+      if (!token || token === "dev-temp-token") {
+        return null;
+      }
+
       // 从JWT token中解析用户信息
       const payload = JSON.parse(atob(token.split(".")[1]));
       return payload.user;
     } catch (error) {
       console.error("解析token失败:", error);
+      // 出错时清除可能无效的token
+      localStorage.removeItem("token");
       return null;
     }
   },

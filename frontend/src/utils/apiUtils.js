@@ -78,7 +78,15 @@ export function createApiRequest(baseURL = API_URL) {
   // 直接使用硬编码 API URL
   return {
     async request(endpoint, options = {}) {
-      const token = localStorage.getItem("token");
+      // 安全地获取 token，避免 null 错误
+      let token;
+      try {
+        token = localStorage.getItem("token");
+      } catch (error) {
+        console.error("Error reading token from localStorage:", error);
+        token = null;
+      }
+
       const url = `${baseURL}${endpoint}`;
 
       const defaultOptions = {
