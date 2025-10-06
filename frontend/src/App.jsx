@@ -45,8 +45,7 @@ function App() {
           <Route path="edit-reward-list" element={<EditRewardListPage />} />
           <Route path="settings" element={<SettingsPage />} />
 
-          {/* 默认跳转到今日视图 */}
-          <Route index element={<Navigate to="today" replace />} />
+          <Route index element={<Navigate to="/login" replace />} />
         </Route>
 
         {/* 看板详情页全屏 */}
